@@ -11,19 +11,19 @@ fun main()
     val listOfAddresses = parseAddresses(stringOfAddresses)
 
     println("Addresses:")
-    listOfAddresses.forEach { it.printAddress() }
+    listOfAddresses.forEach { println(it.address) }
 
     println("\nAddresses with maximum index:")
     val maxIndex = listOfAddresses.maxOfOrNull { it.index }
-    listOfAddresses.forEach { if (it.index == maxIndex) it.printAddress()}
+    listOfAddresses.forEach { if (it.index == maxIndex) println(it.address) }
 
     println("\nAddress with shortest street name:")
     val shortestStreetLength = listOfAddresses.minOfOrNull { it.street.length }
-    listOfAddresses.forEach { if (it.street.length == shortestStreetLength) it.printAddress() }
+    listOfAddresses.forEach { if (it.street.length == shortestStreetLength) println(it.address) }
 
     println("\nAddress with longest street name:")
     val longestStreetLength = listOfAddresses.maxOfOrNull { it.street.length }
-    listOfAddresses.forEach { if (it.street.length == longestStreetLength) it.printAddress() }
+    listOfAddresses.forEach { if (it.street.length == longestStreetLength) print(it.address) }
 }
 
 fun parseAddresses(stringOfAddresses: String): List<Address>
