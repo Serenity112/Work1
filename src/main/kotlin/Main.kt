@@ -17,13 +17,17 @@ fun main()
     val maxIndex = listOfAddresses.maxOfOrNull { it.index }
     listOfAddresses.forEach { if (it.index == maxIndex) println(it.address) }
 
+    println("\nAddresses with minimum index:")
+    val minIndex = listOfAddresses.minOfOrNull { it.index }
+    listOfAddresses.forEach { if (it.index == minIndex) println(it.address) }
+
     println("\nAddress with shortest street name:")
-    val shortestStreetLength = listOfAddresses.minOfOrNull { it.street.length }
-    listOfAddresses.forEach { if (it.street.length == shortestStreetLength) println(it.address) }
+    val minStreetName = listOfAddresses.minOfOrNull { it.street.length }
+    listOfAddresses.forEach { if (it.street.length == minStreetName) println(it.address) }
 
     println("\nAddress with longest street name:")
-    val longestStreetLength = listOfAddresses.maxOfOrNull { it.street.length }
-    listOfAddresses.forEach { if (it.street.length == longestStreetLength) print(it.address) }
+    val maxStreetName = listOfAddresses.maxOfOrNull { it.street.length }
+    listOfAddresses.forEach { if (it.street.length == maxStreetName) print(it.address) }
 }
 
 fun parseAddresses(stringOfAddresses: String): List<Address>
