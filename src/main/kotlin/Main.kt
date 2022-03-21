@@ -1,22 +1,36 @@
 fun main()
 {
     val stringOfAddresses: String =
-        "123456, city Moscow, street Korablestroiteley, h. 3" + System.lineSeparator() +
+        "189765, city Moscow, street Korablestroiteley, h. 3" + System.lineSeparator() +
                 "123111, city SPB, street Bolshoy, h. 11" + System.lineSeparator() +
                 "189765, city Moscow, street Leninsky, h. 2" + System.lineSeparator() +
-                "111234, city Chicago, street Johnson, h. 67"
+                "101789, city Chicago, street Cad, h. 67" + System.lineSeparator() +
+                "109991, city Omsk, street Teatralnaya, h. 7" + System.lineSeparator() +
+                "188646, city New York, street Wim, h. 677"
 
     val listOfAddresses = parseAddresses(stringOfAddresses)
 
     println("Addresses:")
     listOfAddresses.forEach { it.printAddress() }
+
+    println("\nAddresses with maximum index:")
+    val maxIndex = listOfAddresses.maxOfOrNull { it.index }
+    listOfAddresses.forEach { if (it.index == maxIndex) it.printAddress()}
+
+    println("\nAddress with shortest street name:")
+    val shortestStreetLength = listOfAddresses.minOfOrNull { it.street.length }
+    listOfAddresses.forEach { if (it.street.length == shortestStreetLength) it.printAddress() }
+
+    println("\nAddress with longest street name:")
+    val longestStreetLength = listOfAddresses.maxOfOrNull { it.street.length }
+    listOfAddresses.forEach { if (it.street.length == longestStreetLength) it.printAddress() }
 }
 
 fun parseAddresses(stringOfAddresses: String): List<Address>
 {
     val addressesList = mutableListOf<Address>()
 
-    val particularAddresses = stringOfAddresses.split('\n').toTypedArray()
+    val particularAddresses = stringOfAddresses.split(System.lineSeparator()).toTypedArray()
 
     for (particularAddress: String in particularAddresses)
     {
@@ -26,15 +40,15 @@ fun parseAddresses(stringOfAddresses: String): List<Address>
 
         val city: String = addressData[1]
             .replace("city", "")
-            .filter { !it.isWhitespace() }
+            .trimStart()
 
         val street: String = addressData[2]
             .replace("street", "")
-            .filter { !it.isWhitespace() }
+            .trimStart()
 
         val house: Int = addressData[3]
             .replace("h.", "")
-            .filter { !it.isWhitespace() }
+            .trimStart()
             .toInt()
 
         addressesList.add(Address(index, city, street, house))

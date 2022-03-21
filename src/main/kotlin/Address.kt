@@ -1,7 +1,7 @@
-class Address(private val index: Int, private val city: String, private val street: String, private val house: Int)
+class Address(val index: Int, val city: String, val street: String, val house: Int)
 {
     fun printAddress()
     {
-        print("Index: $index, city: $city, street: $street, house: $house\n")
+        print("Address has Index: $index, city: $city, street: $street, house: $house\n")
     }
 }
